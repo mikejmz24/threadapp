@@ -52,6 +52,8 @@
     </Compile>
     <Compile Include="Helper.cs" />
     <Compile Include="Hilo.cs" />
+    <Compile Include="HiloEventArgs.cs" />
+    <Compile Include="IHelper.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Form1.resx">

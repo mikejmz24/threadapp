@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 
@@ -13,10 +7,8 @@ namespace threadapp
     public partial class Form1 : Form
     {
         Thread hilo, hilo2, hilo3 = null;
-        bool terminarHilo = false;
-        delegate void Delegado(TextBox input1, TextBox input2, TextBox input3, TextBox calc1, TextBox calc2, TextBox calc3, TextBox res);
-        Delegado delegado = null;
-        Hilo h = new Hilo();
+        Hilo H = new Hilo();
+        Helper Helper = new Helper();
 
         public Form1()
         {
@@ -25,26 +17,38 @@ namespace threadapp
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //delegado = new Delegado(() => h.mensaje(input1, input2, input3, calc1, calc2, calc3, res));
-            delegado = h.mensaje;
-            //hilo = new Thread(() => {Thread.Sleep(10000); h.mensaje(input1, input2, input3, calc1, calc2, calc3, res);});
-            hilo = new Thread(() => { Thread.Sleep(10000); delegado(input1, input2, input3, calc1, calc2, calc3, res); });
+            H.HiloIniciado += Helper.OnHiloIniciado;
+            hilo = new Thread(() => H.Mensaje(input1, input2, input3, calc1, calc2, calc3, res));
             hilo.Start();
-            //h.mensaje(input1, input2, input3, calc1, calc2, calc3, res);
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            hilo2 = new Thread(() => { Thread.Sleep(10000); h.mensaje(input1, input2, input3, calc1, calc2, calc3, res); });
+            H.HiloIniciado += Helper.OnHiloIniciado;
+            hilo2 = new Thread(() => H.Mensaje(input1, input2, input3, calc1, calc2, calc3, res));
             hilo2.Start();
-            //h.mensaje(input1, input2, input3, calc1, calc2, calc3, res);
+        }
+
+        private void input1_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Helper.ValidarNum(sender, e);
+        }
+
+        private void input2_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Helper.ValidarNum(sender, e);
+        }
+
+        private void input3_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            Helper.ValidarNum(sender, e);
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            hilo3 = new Thread(() => { Thread.Sleep(10000); h.mensaje(input1, input2, input3, calc1, calc2, calc3, res); });
+            H.HiloIniciado += Helper.OnHiloIniciado;
+            hilo3 = new Thread(() => H.Mensaje(input1, input2, input3, calc1, calc2, calc3, res));
             hilo3.Start();
-            //h.mensaje(input1, input2, input3, calc1, calc2, calc3, res);
         }
 
         private void button1_Click(object sender, EventArgs e)

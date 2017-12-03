@@ -54,6 +54,7 @@
             this.input1.Name = "input1";
             this.input1.Size = new System.Drawing.Size(95, 31);
             this.input1.TabIndex = 0;
+            this.input1.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.input1_KeyPress);
             // 
             // input2
             // 
@@ -62,6 +63,7 @@
             this.input2.Name = "input2";
             this.input2.Size = new System.Drawing.Size(95, 31);
             this.input2.TabIndex = 1;
+            this.input2.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.input2_KeyPress);
             // 
             // input3
             // 
@@ -70,6 +72,7 @@
             this.input3.Name = "input3";
             this.input3.Size = new System.Drawing.Size(95, 31);
             this.input3.TabIndex = 2;
+            this.input3.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.input3_KeyPress);
             // 
             // res
             // 
